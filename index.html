@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jassif Team - Angular Learning</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<style>
+        .content-section p, 
+        .content-section li,
+        .content-section h3,
+        .content-section h4,
+        .comparison-card p {
+            color: #333 !important;
+        }
+        
+        .tip-box p,
+        .tip-box li,
+        .tip-box h4 {
+            color: white !important;
+        }
+        
+        .warning-box p,
+        .warning-box li,
+        .warning-box h4 {
+            color: white !important;
+        }
+        
+        .exercise-box p,
+        .exercise-box h4 {
+            color: white !important;
+        }
+        
+        /* Stable logo styling - NO ANIMATIONS */
+        .logo-icon {
+            animation: none !important;
+        }
+        
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: none !important;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .bottom-nav .nav-tab {
+            margin: 0;
+        }
+
+        /* Index page specific styles */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tutorial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--git-color);
+            text-decoration: none;
+            display: block;
+            color: #333;
+            height: 100%;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: #333;
+        }
+
+        .tutorial-icon {
+            font-size: 2rem;
+            color: var(--git-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tutorial-card h3 {
+            margin: 0.5rem 0;
+            color: var(--dark);
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .tutorial-card p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--git-color);
+        }
+
+        .category-title h2 {
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+            color: var(--git-color);
+        }
+
+        .quick-stats {
+            display: flex;
+            gap: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--git-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Start Learning Section */
+        .start-learning-section {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .start-learning-section h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .start-learning-section p {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .start-learning-icon {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 0 auto;
+            border: 3px solid white;
+        }
+
+        .start-learning-icon:hover {
+            background: transparent;
+            color: white;
+            transform: scale(1.1) rotate(5deg);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .category-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .start-learning-section {
+                padding: 1.5rem;
+            }
+            
+            .start-learning-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .start-learning-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+        }
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+<div class="header-container">
+<div class="logo">
+<div class="logo-icon">
+<img alt="Jassif Team Logo" class="logo-image" src="logo.jpg"/>
+</div>
+<h1>Jassif Team <span>Institution</span></h1>
+</div>
+</div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+<div class="hero-content">
+<h2>Angular Learning</h2>
+<p>முழுமையான Angular கற்றல் வழிகாட்டி - தொடக்கத்தில் இருந்து மேம்பட்ட வரை</p>
+<div class="quick-stats">
+<div class="stat-item">
+<div class="stat-number">50+</div>
+<div class="stat-label">பாடங்கள்</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">15+</div>
+<div class="stat-label">பிரிவுகள்</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">100%</div>
+<div class="stat-label">தமிழ் விளக்கம்</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Main Content -->
+<main class="container">
+<!-- Start Learning Section -->
+<section class="start-learning-section">
+<h2>Angular ஐக் கற்றுக்கொள்ள ஆரம்பிக்கவும்</h2>
+<p>முழுமையான Angular டுடோரியல் தொடரின் முதல் பாடத்துடன் தொடங்குங்கள். படிப்படியான வழிகாட்டி மற்றும் தமிழில் விரிவான விளக்கங்கள்.</p>
+<a href="Angular%20Tutorial.html" class="start-learning-icon">
+<i class="fas fa-play-circle"></i>
+</a>
+</section>
+
+<!-- Getting Started -->
+<section class="category-section" id="getting-started">
+<div class="category-title">
+<i class="fas fa-rocket category-icon"></i>
+<h2>ஆரம்பிப்பது (Getting Started)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Tutorial.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-book-open"></i>
+<h3>Angular Tutorial</h3>
+</div>
+<p>Angular கற்க ஆரம்பிக்க இங்கு தொடங்கவும் - முழுமையான தொடக்க வழிகாட்டி</p>
+</a>
+
+<a href="Angular%20Intro.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fab fa-angular"></i>
+<h3>Angular Intro</h3>
+</div>
+<p>Angular பற்றிய அறிமுகம் மற்றும் அடிப்படைக் கருத்துகள்</p>
+</a>
+
+<a href="Angular%20Get%20Started.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-play-circle"></i>
+<h3>Angular Get Started</h3>
+</div>
+<p>Angular ஐ எவ்வாறு தொடங்குவது - படிப்படியான வழிகாட்டி</p>
+</a>
+
+<a href="Angular%20First%20App.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-code"></i>
+<h3>Angular First App</h3>
+</div>
+<p>முதல் Angular பயன்பாட்டை உருவாக்குதல்</p>
+</a>
+
+<a href="Angular%20Introduction.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-info-circle"></i>
+<h3>Angular Introduction</h3>
+</div>
+<p>Angular-ன் அம்சங்கள் மற்றும் நன்மைகள்</p>
+</a>
+</div>
+</section>
+
+<!-- Components & Templates -->
+<section class="category-section" id="components-templates">
+<div class="category-title">
+<i class="fas fa-cube category-icon"></i>
+<h2>கூறுகள் & டெம்ப்ளேட்டுகள் (Components & Templates)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Components.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-puzzle-piece"></i>
+<h3>Angular Components</h3>
+</div>
+<p>Angular கூறுகள் - உருவாக்குதல் மற்றும் பயன்படுத்துதல்</p>
+</a>
+
+<a href="Angular%20Templates.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-file-code"></i>
+<h3>Angular Templates</h3>
+</div>
+<p>டெம்ப்ளேட் தொடரியல் மற்றும் வழிமுறைகள்</p>
+</a>
+
+<a href="Angular%20Interpolation.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-exchange-alt"></i>
+<h3>Angular Interpolation</h3>
+</div>
+<p>டெம்ப்ளேட்டில் தரவு காட்டுதல்</p>
+</a>
+
+<a href="Angular%20Data%20Binding.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-link"></i>
+<h3>Angular Data Binding</h3>
+</div>
+<p>தரவு பைண்டிங் வகைகள் மற்றும் பயன்பாடு</p>
+</a>
+
+<a href="Angular%20Templates%20Attribute%20Binding.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-tag"></i>
+<h3>Attribute Binding</h3>
+</div>
+<p>HTML பண்புகளை டைனமிக் முறையில் பைண்ட் செய்தல்</p>
+</a>
+
+<a href="Angular%20Events.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-bolt"></i>
+<h3>Angular Events</h3>
+</div>
+<p>நிகழ்வுகளை கையாளுதல் மற்றும் $event பொருள்</p>
+</a>
+
+<a href="Angular%20Template%20Reference%20Variables.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-hashtag"></i>
+<h3>Template Reference Variables</h3>
+</div>
+<p>டெம்ப்ளேட்டில் உறுப்புகளைக் குறிப்பிட #var பயன்பாடு</p>
+</a>
+</div>
+</section>
+
+<!-- Directives & Control Flow -->
+<section class="category-section" id="directives-control">
+<div class="category-title">
+<i class="fas fa-directions category-icon"></i>
+<h2>வழிமுறைகள் & கட்டுப்பாட்டு ஓட்டம் (Directives & Control Flow)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Directives.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-magic"></i>
+<h3>Angular Directives</h3>
+</div>
+<p>வழிமுறைகளின் வகைகள் மற்றும் பயன்பாடு</p>
+</a>
+
+<a href="Angular%20Conditional%20Rendering.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-question-circle"></i>
+<h3>Conditional Rendering</h3>
+</div>
+<p>நிபந்தனை அடிப்படையில் உறுப்புகளைக் காட்டுதல்</p>
+</a>
+
+<a href="Angular%20Control%20Flow.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-code-branch"></i>
+<h3>Angular Control Flow</h3>
+</div>
+<p>கட்டுப்பாட்டு ஓட்டம் புதிய தொடரியல்</p>
+</a>
+
+<a href="Angular%20Lists.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-list"></i>
+<h3>Angular Lists</h3>
+</div>
+<p>பட்டியல்கள் மற்றும் ngFor பயன்பாடு</p>
+</a>
+
+<a href="Angular%20Templates%20TrackBy%20with%20ngFor.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-search"></i>
+<h3>TrackBy with ngFor</h3>
+</div>
+<p>ngFor செயல்திறனை மேம்படுத்த trackBy பயன்பாடு</p>
+</a>
+
+<a href="Angular%20Alias%20with%20as%20in%20ngIf.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-user-tag"></i>
+<h3>Alias with as in ngIf</h3>
+</div>
+<p>ngIf-ல் as மூலம் அலியாஸ் பயன்பாடு</p>
+</a>
+
+<a href="Angular%20Template%20Statements%20and%20%24event.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-terminal"></i>
+<h3>Template Statements & $event</h3>
+</div>
+<p>டெம்ப்ளேட் ஸ்டேட்மென்ட்ஸ் மற்றும் $event பொருள்</p>
+</a>
+
+<a href="Angular%20templates%20Structural%20Directives%20Micro-syntax.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-sitemap"></i>
+<h3>Structural Directives Micro-syntax</h3>
+</div>
+<p>கட்டமைப்பு வழிமுறைகள் மைக்ரோ-தொடரியல்</p>
+</a>
+</div>
+</section>
+
+<!-- Advanced Templates -->
+<section class="category-section" id="advanced-templates">
+<div class="category-title">
+<i class="fas fa-layer-group category-icon"></i>
+<h2>மேம்பட்ட டெம்ப்ளேட்டுகள் (Advanced Templates)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20ngTemplateOutlet.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-expand"></i>
+<h3>ngTemplateOutlet</h3>
+</div>
+<p>டெம்ப்ளேட்டுகளை மீண்டும் பயன்படுத்துதல்</p>
+</a>
+
+<a href="Angular%20Templates%20ngTemplateOutlet.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-clone"></i>
+<h3>Templates ngTemplateOutlet</h3>
+</div>
+<p>மேம்பட்ட ngTemplateOutlet பயன்பாடு</p>
+</a>
+
+<a href="Angular%20Null-Safe%20Navigation.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-shield-alt"></i>
+<h3>Null-Safe Navigation</h3>
+</div>
+<p>பிழையின்றி பண்புகளை அணுகும் தொடரியல்</p>
+</a>
+</div>
+</section>
+
+<!-- Pipes & Styling -->
+<section class="category-section" id="pipes-styling">
+<div class="category-title">
+<i class="fas fa-filter category-icon"></i>
+<h2>குழாய்கள் & ஸ்டைலிங் (Pipes & Styling)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Pipes.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-filter"></i>
+<h3>Angular Pipes</h3>
+</div>
+<p>அடிப்படை குழாய்கள் மற்றும் பயன்பாடு</p>
+</a>
+
+<a href="Angular%20Pipes%20in%20Templates.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-tint"></i>
+<h3>Pipes in Templates</h3>
+</div>
+<p>டெம்ப்ளேட்டில் குழாய்களைப் பயன்படுத்துதல்</p>
+</a>
+
+<a href="Angular%20Styling.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-paint-brush"></i>
+<h3>Angular Styling</h3>
+</div>
+<p>Angular-ல் ஸ்டைலிங் முறைகள்</p>
+</a>
+</div>
+</section>
+
+<!-- Services & Dependency Injection -->
+<section class="category-section" id="services-di">
+<div class="category-title">
+<i class="fas fa-cogs category-icon"></i>
+<h2>சேவைகள் & சார்பு உட்செலுத்தல் (Services & DI)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Services%20%26%20Dependency%20Injection.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-cogs"></i>
+<h3>Services & Dependency Injection</h3>
+</div>
+<p>சேவைகள் மற்றும் DI அடிப்படைகள்</p>
+</a>
+
+<a href="Angular%20Advanced%20DI.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-project-diagram"></i>
+<h3>Advanced DI</h3>
+</div>
+<p>மேம்பட்ட சார்பு உட்செலுத்தல் நுட்பங்கள்</p>
+</a>
+
+<a href="Angular%20App%20Bootstrap%20%26%20Providers.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-rocket"></i>
+<h3>App Bootstrap & Providers</h3>
+</div>
+<p>பயன்பாட்டை துவக்குதல் மற்றும் வழங்குநர்கள்</p>
+</a>
+</div>
+</section>
+
+<!-- HTTP & Data -->
+<section class="category-section" id="http-data">
+<div class="category-title">
+<i class="fas fa-database category-icon"></i>
+<h2>HTTP & தரவு (HTTP & Data)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20HttpClient.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-cloud-download-alt"></i>
+<h3>Angular HttpClient</h3>
+</div>
+<p>HTTP கிளையண்ட் மூலம் தரவு பரிமாற்றம்</p>
+</a>
+
+<a href="Angular%20HTTP%20Interceptors.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-exchange-alt"></i>
+<h3>HTTP Interceptors</h3>
+</div>
+<p>HTTP கோரிக்கைகளை இடைமறித்தல்</p>
+</a>
+</div>
+</section>
+
+<!-- Forms -->
+<section class="category-section" id="forms">
+<div class="category-title">
+<i class="fas fa-edit category-icon"></i>
+<h2>படிவங்கள் (Forms)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Forms.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-edit"></i>
+<h3>Angular Forms</h3>
+</div>
+<p>அடிப்படை படிவங்கள் மற்றும் வகைகள்</p>
+</a>
+
+<a href="Angular%20Reactive%20Forms%20Advanced.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-tasks"></i>
+<h3>Reactive Forms Advanced</h3>
+</div>
+<p>மேம்பட்ட ரியாக்டிவ் படிவங்கள்</p>
+</a>
+</div>
+</section>
+
+<!-- Router -->
+<section class="category-section" id="router">
+<div class="category-title">
+<i class="fas fa-route category-icon"></i>
+<h2>ரவுட்டர் (Router)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Router.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-route"></i>
+<h3>Angular Router</h3>
+</div>
+<p>அடிப்படை ரவுட்டிங் கருத்துகள்</p>
+</a>
+
+<a href="Angular%20Router%20Advanced.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-sitemap"></i>
+<h3>Router Advanced</h3>
+</div>
+<p>மேம்பட்ட ரவுட்டிங் நுட்பங்கள்</p>
+</a>
+</div>
+</section>
+
+<!-- Advanced Topics -->
+<section class="category-section" id="advanced-topics">
+<div class="category-title">
+<i class="fas fa-chart-line category-icon"></i>
+<h2>மேம்பட்ட தலைப்புகள் (Advanced Topics)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Signals.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-broadcast-tower"></i>
+<h3>Angular Signals</h3>
+</div>
+<p>Signals மற்றும் ரியாக்டிவ் நிரலாக்கம்</p>
+</a>
+
+<a href="Angular%20Change%20Detection%20Performance.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-tachometer-alt"></i>
+<h3>Change Detection Performance</h3>
+</div>
+<p>மாற்ற கண்டறிதல் மற்றும் செயல்திறன்</p>
+</a>
+
+<a href="Angular%20Lifecycle%20Hooks.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-life-ring"></i>
+<h3>Lifecycle Hooks</h3>
+</div>
+<p>கூறு வாழ்க்கை சுழற்சி கொக்கிகள்</p>
+</a>
+
+<a href="Angular%20Dynamic%20Components.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-bolt"></i>
+<h3>Dynamic Components</h3>
+</div>
+<p>டைனமிக் முறையில் கூறுகளை உருவாக்குதல்</p>
+</a>
+
+<a href="Angular%20Animations.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-film"></i>
+<h3>Angular Animations</h3>
+</div>
+<p>அனிமேஷன்கள் மற்றும் மாற்றங்கள்</p>
+</a>
+
+<a href="Angular%20State%20Management.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-brain"></i>
+<h3>State Management</h3>
+</div>
+<p>மாநில மேலாண்மை முறைகள்</p>
+</a>
+</div>
+</section>
+
+<!-- Testing & Security -->
+<section class="category-section" id="testing-security">
+<div class="category-title">
+<i class="fas fa-shield-alt category-icon"></i>
+<h2>சோதனை & பாதுகாப்பு (Testing & Security)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20Testing.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-vial"></i>
+<h3>Angular Testing</h3>
+</div>
+<p>கூறுகள் மற்றும் சேவைகளை சோதனை செய்தல்</p>
+</a>
+
+<a href="Angular%20Security.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-shield-alt"></i>
+<h3>Angular Security</h3>
+</div>
+<p>பாதுகாப்பு சிறந்த நடைமுறைகள்</p>
+</a>
+</div>
+</section>
+
+<!-- SSR & Performance -->
+<section class="category-section" id="ssr-performance">
+<div class="category-title">
+<i class="fas fa-server category-icon"></i>
+<h2>SSR & செயல்திறன் (SSR & Performance)</h2>
+</div>
+<div class="tutorials-grid">
+<a href="Angular%20SSR%20%26%20Hydration.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-server"></i>
+<h3>SSR & Hydration</h3>
+</div>
+<p>சர்வர் சைட் ரெண்டரிங் மற்றும் ஹைட்ரேஷன்</p>
+</a>
+
+<a href="Angular%20SSR%20Hydration.html" class="tutorial-card">
+<div class="tutorial-icon">
+<i class="fas fa-tint"></i>
+<h3>SSR Hydration</h3>
+</div>
+<p>SSR ஹைட்ரேஷன் மேம்பட்ட தலைப்புகள்</p>
+</a>
+</div>
+</section>
+
+<div class="tip-box">
+<h4><span class="tip-icon">💡</span>Jassif Team குறிப்புகள்:</h4>
+<p>இந்த Angular கற்றல் வழிகாட்டி தொடக்கநிலை மாணவர்களிலிருந்து மேம்பட்ட நிரலாக்கவியலாளர்கள் வரை அனைவருக்கும் ஏற்றவாறு வடிவமைக்கப்பட்டுள்ளது. ஒவ்வொரு பாடத்திலும் ஆங்கிலத்தில் குறியீடு எடுத்துக்காட்டுகள் மற்றும் தமிழில் விரிவான விளக்கங்கள் உள்ளன.</p>
+<p><strong>கற்றல் முறை:</strong> <strong>Angular Tutorial</strong> இருந்து தொடங்கி படிப்படியாக முன்னேறவும். ஒவ்வொரு பாடத்திலும் உள்ள பயிற்சிகளை முயற்சிக்கவும், மேம்பட்ட தலைப்புகளுக்குச் செல்வதற்கு முன் அடிப்படைகளை நன்கு புரிந்துகொள்ளவும்.</p>
+<p><strong>ஆதரவு:</strong> ஏதேனும் சந்தேகங்கள் இருந்தால், எங்கள் Jassif Team நிறுவனத்தைத் தொடர்பு கொள்ளவும்.</p>
+</div>
+</main>
+
+<!-- Footer -->
+<footer>
+<div class="footer-content">
+<div class="footer-column">
+<h3>Jassif Team நிறுவனம்</h3>
+<p>தரமான நிரலாக்க கல்வியை வழங்கும் முன்னணி கல்வி நிறுவனம். Angular மற்றும் நவீன வலை தொழில்நுட்பங்களில் நிபுணத்துவம்.</p>
+</div>
+<div class="footer-column">
+<h3>விரைவு இணைப்புகள்</h3>
+<ul>
+<li><a href="#getting-started">ஆரம்பிப்பது</a></li>
+<li><a href="#components-templates">கூறுகள் & டெம்ப்ளேட்டுகள்</a></li>
+<li><a href="#directives-control">வழிமுறைகள் & கட்டுப்பாட்டு ஓட்டம்</a></li>
+<li><a href="#pipes-styling">குழாய்கள் & ஸ்டைலிங்</a></li>
+<li><a href="#services-di">சேவைகள் & DI</a></li>
+<li><a href="#http-data">HTTP & தரவு</a></li>
+<li><a href="#forms">படிவங்கள்</a></li>
+<li><a href="#router">ரவுட்டர்</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h3>மேம்பட்ட தலைப்புகள்</h3>
+<ul>
+<li><a href="#advanced-templates">மேம்பட்ட டெம்ப்ளேட்டுகள்</a></li>
+<li><a href="#advanced-topics">மேம்பட்ட தலைப்புகள்</a></li>
+<li><a href="#testing-security">சோதனை & பாதுகாப்பு</a></li>
+<li><a href="#ssr-performance">SSR & செயல்திறன்</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h3>எங்களைத் தொடர்பு கொள்ள</h3>
+<ul>
+<li><a href="#"><i class="fas fa-envelope"></i> info@jassifteam.com</a></li>
+<li><i class="fas fa-globe"></i> www.jassif.com</li>
+<li><a href="#"><i class="fas fa-map-marker-alt"></i> சென்னை, தமிழ்நாடு</a></li>
+</ul>
+</div>
+</div>
+<div class="copyright">
+<p>© 2023 Jassif Team நிறுவனம். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. | <a href="#" style="color: #aaa;">தனியுரிமைக் கொள்கை</a> | <a href="#" style="color: #aaa;">பயன்பாட்டு விதிமுறைகள்</a></p>
+</div>
+</footer>
+
+<script>
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all content sections for animation
+        document.querySelectorAll('.category-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add hover effects to tutorial cards
+        document.querySelectorAll('.tutorial-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
